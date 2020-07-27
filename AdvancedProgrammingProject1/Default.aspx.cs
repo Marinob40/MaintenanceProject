@@ -14,6 +14,7 @@ namespace AdvancedProgrammingProject1
             UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
         }
 
+        //This button will add a new assignment
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             if (IsValid)
@@ -48,15 +49,19 @@ namespace AdvancedProgrammingProject1
             }
         }
 
+        //General database error message
         private string DatabaseErrorMessage(string errorMsg)
         {
             return $"<b>A database error has occurred:</b> {errorMsg}";
         }
+
+        //Database error message if someone else is updated assignment information
         private string ConcurrencyErrorMessage()
         {
-            return "Another user may have updated that category. Please try again";
+            return "Another user may have updated that assignment. Please try again";
         }
 
+        //Will update assignment while in edit mode
         protected void grdAssignments_RowUpdated(object sender, GridViewUpdatedEventArgs e)
         {
             if (e.Exception != null)
@@ -70,6 +75,8 @@ namespace AdvancedProgrammingProject1
                 lblError.Text = ConcurrencyErrorMessage();
             }
         }
+
+        //Will delete an assignment
         protected void grdAssignments_RowDeleted(object sender, GridViewDeletedEventArgs e)
         {
             if (e.Exception != null)
